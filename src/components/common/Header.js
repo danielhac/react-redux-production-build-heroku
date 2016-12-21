@@ -6,13 +6,17 @@ import LoadingDots from './LoadingDots';
 // LoadingDots will only display if 'loading' (ajax)
 const Header = ({loading}) => {
     return (
-        <nav>
-            <IndexLink to="/" activeClassName="active">Home</IndexLink>
-            {" | "}
-            <Link to="/wines" activeClassName="active">Wines</Link>
-            {" | "}
-            <Link to="/about" activeClassName="active">About</Link>
-            {loading && <LoadingDots interval={100} dots={10}/>}
+        <nav className="navbar navbar-default">
+            <div className="container-fluid">
+                <ul className="nav navbar-nav">
+                    <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+
+                    <li><Link to="/wines" activeClassName="active">Wines</Link></li>
+
+                    <li><Link to="/about" activeClassName="active">About</Link></li>
+                    {loading && <LoadingDots interval={100} dots={10}/>}
+                </ul>
+            </div>
         </nav>
     );
 };

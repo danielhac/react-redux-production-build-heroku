@@ -4,7 +4,7 @@ import SelectInput from '../common/SelectInput';
 
 // Stateless functional components
 // Destructured all props in function's argument list
-const WineForm = ({wine, allMakers, onSave, onChange, saving, errors}) => {
+const WineForm = ({wine, allMakers, onSave, onDelete, onChange, saving, errors, deleting}) => {
     return (
         <form>
             <h1>Manage Wine</h1>
@@ -50,6 +50,13 @@ const WineForm = ({wine, allMakers, onSave, onChange, saving, errors}) => {
                 value={saving ? 'Saving...' : 'Save'}
                 className="btn btn-primary"
                 onClick={onSave}/>
+
+            <input
+                type="submit"
+                disabled={deleting}
+                value={deleting ? 'Deleting...' : 'Delete'}
+                className="btn btn-danger"
+                onClick={onDelete}/>
         </form>
     );
 };
@@ -59,9 +66,11 @@ WineForm.propTypes = {
     wine: React.PropTypes.object.isRequired,
     allMakers: React.PropTypes.array,
     onSave: React.PropTypes.func.isRequired,
+    onDelete: React.PropTypes.func.isRequired,
     onChange: React.PropTypes.func.isRequired,
     saving: React.PropTypes.bool,
-    errors: React.PropTypes.object
+    errors: React.PropTypes.object,
+    deleting: React.PropTypes.bool
 };
 
 export default WineForm;

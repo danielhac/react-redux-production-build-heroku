@@ -14,6 +14,10 @@ export function updateWineSuccess(wine) {
     return {type: types.UPDATE_WINE_SUCCESS, wine};
 }
 
+export function deleteWineSuccess(wineId) {
+    return {type: types.DELETE_WINE_SUCCESS, wineId};
+}
+
 // Thunk
 export function loadWines() {
     return function(dispatch) {
@@ -40,6 +44,18 @@ export function saveWine(wine) {
             dispatch(ajaxCallError(error));
             throw(error);
 
+        });
+    };
+}
+
+export function deleteWine(wineId) {
+    return function (dispatch, getState) {
+        dispatch(beginAjaxCall());
+        return wineApi.deleteWine(wineId).then(wine => {
+            dispatch(deleteWineSuccess(wineId));
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+            throw(error);
         });
     };
 }

@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import WineListRow from './WineListRow';
 
-const WineList = ({wines}) => {
+const WineList = ({wines, deleteWine}) => {
     return (
         <table className="table">
             <thead>
@@ -11,11 +11,15 @@ const WineList = ({wines}) => {
                 <th>Maker</th>
                 <th>Category</th>
                 <th>Price</th>
+                <th>&nbsp;</th>
             </tr>
             </thead>
             <tbody>
             {wines.map(wine =>
-                <WineListRow key={wine.id} wine={wine}/>
+                <WineListRow
+                    key={wine.id}
+                    wine={wine}
+                    deleteWine={deleteWine}/>
             )}
             </tbody>
         </table>
@@ -23,7 +27,8 @@ const WineList = ({wines}) => {
 };
 
 WineList.propTypes = {
-    wines: PropTypes.array.isRequired
+    wines: PropTypes.array.isRequired,
+    deleteWine: React.PropTypes.func.isRequired
 };
 
 export default WineList;

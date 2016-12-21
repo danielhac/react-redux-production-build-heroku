@@ -94,7 +94,7 @@ class WineApi {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 const indexOfWineToDelete = wines.findIndex(wine => {
-                    wine.id == wineId;
+                    wine.wineId == wineId;
                 });
                 wines.splice(indexOfWineToDelete, 1);
                 resolve();

@@ -17,6 +17,7 @@ class ManageWinePage extends React.Component {
 
         this.updateWineState = this.updateWineState.bind(this);
         this.saveWine = this.saveWine.bind(this);
+        this.deleteWine = this.deleteWine.bind(this);
     }
 
     // React lifecycle function is called any time props have changed or when React thinks props has changed
@@ -46,6 +47,20 @@ class ManageWinePage extends React.Component {
             });
     }
 
+    deleteWine(event) {
+        event.preventDefault();
+        this.props.actions.deleteWine(this.state.wineId)
+            .then(() => this.deleteRedirect())
+            .catch(error => {
+                toastr.error(error);
+            });
+    }
+
+    deleteRedirect() {
+        toastr.success('Wine deleted');
+        this.context.router.push('/wines');
+    }
+
     redirect() {
         this.setState({saving: false});
         toastr.success('Wine saved');
@@ -54,14 +69,18 @@ class ManageWinePage extends React.Component {
 
     render() {
         return (
-            <WineForm
-                allMakers={this.props.makers}
-                onChange={this.updateWineState}
-                onSave={this.saveWine}
-                wine={this.state.wine}
-                errors={this.state.errors}
-                saving={this.state.saving}
-            />
+            <div className="well well-lg">
+                <WineForm
+                    allMakers={this.props.makers}
+                    onChange={this.updateWineState}
+                    onSave={this.saveWine}
+                    onDelete={this.deleteWine}
+                    wine={this.state.wine}
+                    errors={this.state.errors}
+                    saving={this.state.saving}
+                    deleting={this.state.deleting}
+                />
+            </div>
         );
     }
 }

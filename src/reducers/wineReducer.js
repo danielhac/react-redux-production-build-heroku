@@ -13,13 +13,17 @@ export default function wineReducer(state = initialState.wines, action) {
                 Object.assign({}, action.wine)
             ];
 
-
         // filter: part of ES6 to get list of all wines except for the single wine being updated
         // ...: creates brand-new array out of filtered results returned from filter
         case types.UPDATE_WINE_SUCCESS:
             return [
                 ...state.filter(wine => wine.id !== action.wine.id),
                 Object.assign({}, action.wine)
+            ];
+
+        case types.DELETE_WINE_SUCCESS:
+            return [
+                ...state.filter(wine => wine.id !== action.wineId)
             ];
 
         default:
