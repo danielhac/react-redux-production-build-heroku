@@ -13,6 +13,14 @@ export default function makerReducer(state = initialState.makers, action) {
                 Object.assign({}, action.maker)
             ];
 
+        // filter: part of ES6 to get list of all makers except for the single maker being updated
+        // ...: creates brand-new array out of filtered results returned from filter
+        case types.UPDATE_MAKER_SUCCESS:
+            return [
+                ...state.filter(maker => maker.id !== action.maker.id),
+                Object.assign({}, action.maker)
+            ];
+
         default:
             return state;
     }

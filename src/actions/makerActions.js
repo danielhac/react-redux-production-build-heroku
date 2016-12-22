@@ -12,6 +12,10 @@ export function createMakerSuccess(maker) {
     return {type: types.CREATE_MAKER_SUCCESS, maker};
 }
 
+export function updateMakerSuccess(maker) {
+    return {type: types.UPDATE_MAKER_SUCCESS, maker};
+}
+
 export function loadMakers() {
     return dispatch => {
         dispatch(beginAjaxCall());
@@ -28,7 +32,7 @@ export function saveMaker(maker) {
         dispatch(beginAjaxCall());
         return makerApi.saveMaker(maker).then(savedMaker => {
             // Check id, Update or create maker
-            // maker.id ? dispatch(updateMakerSuccess(savedMaker)) :
+            maker.id ? dispatch(updateMakerSuccess(savedMaker)) :
                 dispatch(createMakerSuccess(savedMaker));
         }).catch(error => {
             dispatch(ajaxCallError(error));
