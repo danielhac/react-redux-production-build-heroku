@@ -1,6 +1,5 @@
 import React from 'react';
 import TextInput from '../common/TextInput';
-import SelectInput from '../common/SelectInput';
 
 // Stateless functional components
 // Destructured all props in function's argument list

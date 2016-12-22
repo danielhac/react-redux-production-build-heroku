@@ -10,22 +10,22 @@ class MakersPage extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.redirectToAddMakerPage = this.redirectToAddMakerPage.bind(this);
-        // this.deleteMaker = this.deleteMaker.bind(this);
+        this.deleteMaker = this.deleteMaker.bind(this);
     }
 
     redirectToAddMakerPage() {
         browserHistory.push('/maker');
     }
 
-    // deleteWine(wine){
-    //     this.props.actions.deleteWine(wine.id)
-    //         .then(() => {
-    //             toastr.success('Wine deleted');
-    //         })
-    //         .catch(error => {
-    //             toastr.error();
-    //         });
-    // }
+    deleteMaker(maker){
+        this.props.actions.deleteMaker(maker.id)
+            .then(() => {
+                toastr.success('Brand deleted');
+            })
+            .catch(error => {
+                toastr.error();
+            });
+    }
 
     render() {
         const {makers} = this.props;
@@ -41,17 +41,16 @@ class MakersPage extends React.Component {
                        onClick={this.redirectToAddMakerPage} />
                 <MakerList
                     makers={makers}
-                    />
+                    deleteMaker={this.deleteMaker}/>
             </div>
         );
     }
 }
-// deleteWine={this.deleteWine}
 
 MakersPage.propTypes = {
     makers: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
-    // deleteWine: PropTypes.func.isRequired
+    // deleteMaker: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state, ownProps) {

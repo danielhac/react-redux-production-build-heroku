@@ -17,7 +17,7 @@ class ManageMakerPage extends React.Component {
 
         this.updateMakerState = this.updateMakerState.bind(this);
         this.saveMaker = this.saveMaker.bind(this);
-        // this.deleteMaker = this.deleteMaker.bind(this);
+        this.deleteMaker = this.deleteMaker.bind(this);
     }
 
     // React lifecycle function is called any time props have changed or when React thinks props has changed
@@ -47,19 +47,19 @@ class ManageMakerPage extends React.Component {
             });
     }
 
-    // deleteMaker(event) {
-    //     event.preventDefault();
-    //     this.props.actions.deleteMaker(this.state.makerId)
-    //         .then(() => this.deleteRedirect())
-    //         .catch(error => {
-    //             toastr.error(error);
-    //         });
-    // }
+    deleteMaker(event) {
+        event.preventDefault();
+        this.props.actions.deleteMaker(this.state.makerId)
+            .then(() => this.deleteRedirect())
+            .catch(error => {
+                toastr.error(error);
+            });
+    }
 
-    // deleteRedirect() {
-    //     toastr.success('Brand deleted');
-    //     this.context.router.push('/makers');
-    // }
+    deleteRedirect() {
+        toastr.success('Brand deleted');
+        this.context.router.push('/makers');
+    }
 
     redirect() {
         this.setState({saving: false});
@@ -74,10 +74,11 @@ class ManageMakerPage extends React.Component {
 
                     onChange={this.updateMakerState}
                     onSave={this.saveMaker}
+                    onDelete={this.deleteMaker}
                     maker={this.state.maker}
                     errors={this.state.errors}
                     saving={this.state.saving}
-
+                    deleting={this.state.deleting}
                 />
             </div>
         );

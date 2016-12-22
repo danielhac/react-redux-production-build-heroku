@@ -1,6 +1,6 @@
 # react-redux-production-build-heroku
 [Deployment to Heroku](https://goo.gl/P25DR2)
-(May have to wait a minute to load)
+-(May need to wait 30 secs to start server)
 
 # Build info
 - React & Redux

@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import MakerListRow from './MakerListRow';
-// deleteWine
-const MakerList = ({makers }) => {
+
+const MakerList = ({makers, deleteMaker }) => {
     return (
         <table className="table">
             <thead>
@@ -15,17 +15,17 @@ const MakerList = ({makers }) => {
                 <MakerListRow
                     key={maker.id}
                     maker={maker}
+                    deleteMaker={deleteMaker}
                     />
             )}
             </tbody>
         </table>
     );
 };
-// deleteWine={deleteWine}
 
 MakerList.propTypes = {
-    makers: PropTypes.array.isRequired
-    // deleteWine: React.PropTypes.func.isRequired
+    makers: PropTypes.array.isRequired,
+    deleteMaker: React.PropTypes.func.isRequired
 };
 
 export default MakerList;

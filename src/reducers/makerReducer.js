@@ -21,6 +21,11 @@ export default function makerReducer(state = initialState.makers, action) {
                 Object.assign({}, action.maker)
             ];
 
+        case types.DELETE_MAKER_SUCCESS:
+            return [
+                ...state.filter(maker => maker.id !== action.makerId)
+            ];
+
         default:
             return state;
     }

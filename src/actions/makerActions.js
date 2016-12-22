@@ -16,6 +16,10 @@ export function updateMakerSuccess(maker) {
     return {type: types.UPDATE_MAKER_SUCCESS, maker};
 }
 
+export function deleteMakerSuccess(makerId) {
+    return {type: types.DELETE_MAKER_SUCCESS, makerId};
+}
+
 export function loadMakers() {
     return dispatch => {
         dispatch(beginAjaxCall());
@@ -38,6 +42,18 @@ export function saveMaker(maker) {
             dispatch(ajaxCallError(error));
             throw(error);
 
+        });
+    };
+}
+
+export function deleteMaker(makerId) {
+    return function (dispatch, getState) {
+        dispatch(beginAjaxCall());
+        return makerApi.deleteMaker(makerId).then(maker => {
+            dispatch(deleteMakerSuccess(makerId));
+        }).catch(error => {
+            dispatch(ajaxCallError(error));
+            throw(error);
         });
     };
 }
