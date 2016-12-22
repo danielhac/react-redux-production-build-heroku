@@ -4,7 +4,6 @@ import MakerApi from '../api/mockMakerApi';
 import * as types from './actionTypes';
 import {beginAjaxCall} from './ajaxStatusActions';
 
-
 export function loadMakersSuccess(makers) {
     return {type: types.LOAD_MAKERS_SUCCESS, makers};
 }

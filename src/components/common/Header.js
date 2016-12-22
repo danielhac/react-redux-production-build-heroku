@@ -13,6 +13,8 @@ const Header = ({loading}) => {
 
                     <li><Link to="/wines" activeClassName="active">Wines</Link></li>
 
+                    <li><Link to="/makers" activeClassName="active">Brands</Link></li>
+
                     <li><Link to="/about" activeClassName="active">About</Link></li>
                     <li id="dots">{loading && <LoadingDots interval={100} dots={10}/>}</li>
                 </ul>

@@ -51,15 +51,17 @@ const WineForm = ({wine, allMakers, onSave, onDelete, onChange, saving, errors, 
                 className="btn btn-primary"
                 onClick={onSave}/>
 
-            <input
-                type="submit"
-                disabled={deleting}
-                value={deleting ? 'Deleting...' : 'Delete'}
-                className="btn btn-danger"
-                onClick={onDelete}/>
+
         </form>
     );
 };
+
+{/*<input*/}
+    {/*type="submit"*/}
+    {/*disabled={deleting}*/}
+    {/*value={deleting ? 'Deleting...' : 'Delete'}*/}
+    {/*className="btn btn-danger"*/}
+    {/*onClick={onDelete}/>*/}
 
 // PropTypes below should mirror the params on top of page
 WineForm.propTypes = {
