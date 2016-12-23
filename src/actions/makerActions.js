@@ -48,12 +48,24 @@ export function saveMaker(maker) {
 
 export function deleteMaker(makerId) {
     return function (dispatch, getState) {
-        dispatch(beginAjaxCall());
-        return makerApi.deleteMaker(makerId).then(maker => {
-            dispatch(deleteMakerSuccess(makerId));
-        }).catch(error => {
-            dispatch(ajaxCallError(error));
-            throw(error);
-        });
+
+        const currentState = getState();
+
+        let winesWithMaker = currentState.wines.filter(wine => wine.makerId === makerId);
+        console.log(winesWithMaker);
+
+        if (winesWithMaker.length <= 0) {
+            dispatch(beginAjaxCall());
+            return makerApi.deleteMaker(makerId).then(maker => {
+                dispatch(deleteMakerSuccess(makerId));
+            }).catch(error => {
+                dispatch(ajaxCallError(error));
+                throw(error);
+            });
+        } else {
+            return new Promise((resolve, reject) => {
+                reject();
+            });
+        }
     };
 }

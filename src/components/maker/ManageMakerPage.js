@@ -52,7 +52,7 @@ class ManageMakerPage extends React.Component {
         this.props.actions.deleteMaker(this.state.makerId)
             .then(() => this.deleteRedirect())
             .catch(error => {
-                toastr.error(error);
+                toastr.error();
             });
     }
 
@@ -71,7 +71,6 @@ class ManageMakerPage extends React.Component {
         return (
             <div className="well well-lg">
                 <MakerForm
-
                     onChange={this.updateMakerState}
                     onSave={this.saveMaker}
                     onDelete={this.deleteMaker}

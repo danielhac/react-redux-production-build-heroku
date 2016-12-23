@@ -61,6 +61,7 @@ class MakerApi {
     static deleteMaker(makerId) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
+
                 const indexOfMakerToDelete = makers.findIndex(maker => {
                     maker.makerId == makerId;
                 });

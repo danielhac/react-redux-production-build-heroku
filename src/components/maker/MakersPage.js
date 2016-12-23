@@ -23,7 +23,7 @@ class MakersPage extends React.Component {
                 toastr.success('Brand deleted');
             })
             .catch(error => {
-                toastr.error();
+                toastr.error('Cannot delete a Brand with its existing wines! Must delete Brand`s wines first');
             });
     }
 
