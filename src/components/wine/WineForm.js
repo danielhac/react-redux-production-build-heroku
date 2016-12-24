@@ -17,7 +17,7 @@ const WineForm = ({wine, allMakers, onSave, onDelete, onChange, saving, errors, 
 
             <SelectInput
                 name="makerId"
-                label="Maker"
+                label="Brand"
                 value={wine.makerId}
                 defaultOption="Select Maker"
                 options={allMakers}

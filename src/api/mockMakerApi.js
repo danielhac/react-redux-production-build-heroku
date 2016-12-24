@@ -37,9 +37,9 @@ class MakerApi {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 // Simulate server-side validation
-                const minWineNameLength = 3;
-                if (maker.wineName.length < minWineNameLength) {
-                    reject(`Wine name must be at least ${minWineNameLength} characters.`);
+                const minLength = 3;
+                if (maker.wineName.length < minLength) {
+                    reject(`Brand name must be at least ${minLength} characters.`);
                 }
 
                 if (maker.id) {
