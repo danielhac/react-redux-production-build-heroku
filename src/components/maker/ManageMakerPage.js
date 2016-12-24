@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router'; // to use componentDidMount()
 import {bindActionCreators} from 'redux';
 import * as makerActions from '../../actions/makerActions';
 import MakerForm from './MakerForm';
@@ -12,12 +13,21 @@ class ManageMakerPage extends React.Component {
         this.state = {
             maker: Object.assign({}, props.maker),
             errors: {},
-            saving: false
+            saving: false,
+            unsaved: true
         };
 
         this.updateMakerState = this.updateMakerState.bind(this);
         this.saveMaker = this.saveMaker.bind(this);
         this.deleteMaker = this.deleteMaker.bind(this);
+    }
+
+    // Forces a prompt if detects actions besides Save
+    componentDidMount() {
+        this.props.router.setRouteLeaveHook(this.props.route, () => {
+            if (this.state.unsaved)
+                return 'You have unsaved information, are you sure you want to leave this page?';
+        });
     }
 
     // React lifecycle function is called any time props have changed or when React thinks props has changed
@@ -39,6 +49,7 @@ class ManageMakerPage extends React.Component {
     saveMaker(event) {
         event.preventDefault();
         this.setState({saving: true});
+        this.setState({unsaved: false});
         this.props.actions.saveMaker(this.state.maker)
             .then(() => this.redirect())
             .catch(error => {
@@ -83,19 +94,13 @@ class ManageMakerPage extends React.Component {
         );
     }
 }
-{/*allMakers={this.props.makers}*/}
-// onChange={this.updateMakerState}
-{/*onSave={this.saveMaker}*/}
-{/*onDelete={this.deleteMaker}*/}
-// maker={this.state.maker}
-// errors={this.state.errors}
-{/*saving={this.state.saving}*/}
-{/*deleting={this.state.deleting}*/}
 
 ManageMakerPage.propTypes = {
     maker: PropTypes.object.isRequired,
     makers: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
+    route: PropTypes.object.isRequired
 };
 
 //Pull in the React Router context so router is available on this.context.router.
@@ -141,4 +146,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageMakerPage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ManageMakerPage));

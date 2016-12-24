@@ -1,8 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-
-import {withRouter} from 'react-router';
-
+import {withRouter} from 'react-router'; // to use componentDidMount()
 import {bindActionCreators} from 'redux';
 import * as wineActions from '../../actions/wineActions';
 import WineForm from './WineForm';
@@ -24,7 +22,7 @@ class ManageWinePage extends React.Component {
         this.saveWine = this.saveWine.bind(this);
         this.deleteWine = this.deleteWine.bind(this);
     }
-
+    // Forces a prompt if detects actions besides Save
     componentDidMount() {
         this.props.router.setRouteLeaveHook(this.props.route, () => {
             if (this.state.unsaved)
@@ -51,9 +49,7 @@ class ManageWinePage extends React.Component {
     saveWine(event) {
         event.preventDefault();
         this.setState({saving: true});
-
         this.setState({unsaved: false});
-
         this.props.actions.saveWine(this.state.wine)
             .then(() => this.redirect())
             .catch(error => {
