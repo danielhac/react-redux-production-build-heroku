@@ -1,5 +1,8 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
+
+// import { withRouter } from 'react-router';
+
 import {bindActionCreators} from 'redux';
 import * as wineActions from '../../actions/wineActions';
 import WineForm from './WineForm';
@@ -19,6 +22,13 @@ class ManageWinePage extends React.Component {
         this.saveWine = this.saveWine.bind(this);
         this.deleteWine = this.deleteWine.bind(this);
     }
+
+    // componentDidMount() {
+    //     this.props.router.setRouteLeaveHook(this.props.route, () => {
+    //         if (this.state.unsaved)
+    //             return 'You have unsaved information, are you sure you want to leave this page?'
+    //     })
+    // }
 
     // React lifecycle function is called any time props have changed or when React thinks props has changed
     componentWillReceiveProps(nextProps) {

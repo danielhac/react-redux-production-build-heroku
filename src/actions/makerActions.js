@@ -52,7 +52,6 @@ export function deleteMaker(makerId) {
         const currentState = getState();
 
         let winesWithMaker = currentState.wines.filter(wine => wine.makerId === makerId);
-        console.log(winesWithMaker);
 
         if (winesWithMaker.length <= 0) {
             dispatch(beginAjaxCall());
