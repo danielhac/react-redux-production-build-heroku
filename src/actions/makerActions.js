@@ -25,6 +25,17 @@ export function loadMakers() {
         dispatch(beginAjaxCall());
         return makerApi.getAllMakers().then(makers => {
             dispatch(loadMakersSuccess(makers));
+
+            let findNumMakers = loadMakersSuccess(makers).makers;
+            let numMakers = 0;
+
+            for (let i=0; i < findNumMakers.length; i++) {
+                // console.log(findNumMakers[i]);
+                numMakers += i;
+            }
+            numMakers.toString();
+            console.log(numMakers);
+
         }).catch(error => {
             throw(error);
         });
