@@ -69,9 +69,21 @@ class WineApi {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 // Simulate server-side validation
-                const minWineNameLength = 1;
-                if (wine.wineName.length < minWineNameLength) {
-                    reject(`Wine name must be at least ${minWineNameLength} characters.`);
+                const minLength = 3;
+                if (wine.wineName.length < minLength) {
+                    reject(`Wine name must be at least ${minLength} characters.`);
+                }
+                if (wine.makerId.length < minLength) {
+                    reject(`Brand must be selected`);
+                }
+                if (wine.region.length < minLength) {
+                    reject(`Region must be at least ${minLength} characters.`);
+                }
+                if (wine.category.length < minLength) {
+                    reject(`Category must be at least ${minLength} characters.`);
+                }
+                if (wine.price.length < minLength) {
+                    reject(`Price must be at least ${minLength} characters.`);
                 }
 
                 if (wine.id) {
