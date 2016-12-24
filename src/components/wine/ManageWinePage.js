@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 
-// import { withRouter } from 'react-router';
+import {withRouter} from 'react-router';
 
 import {bindActionCreators} from 'redux';
 import * as wineActions from '../../actions/wineActions';
@@ -9,13 +9,15 @@ import WineForm from './WineForm';
 import toastr from 'toastr';
 
 class ManageWinePage extends React.Component {
+
     constructor(props, context) {
         super(props, context);
 
         this.state = {
             wine: Object.assign({}, props.wine),
             errors: {},
-            saving: false
+            saving: false,
+            unsaved: true
         };
 
         this.updateWineState = this.updateWineState.bind(this);
@@ -23,12 +25,12 @@ class ManageWinePage extends React.Component {
         this.deleteWine = this.deleteWine.bind(this);
     }
 
-    // componentDidMount() {
-    //     this.props.router.setRouteLeaveHook(this.props.route, () => {
-    //         if (this.state.unsaved)
-    //             return 'You have unsaved information, are you sure you want to leave this page?'
-    //     })
-    // }
+    componentDidMount() {
+        this.props.router.setRouteLeaveHook(this.props.route, () => {
+            if (this.state.unsaved)
+                return 'You have unsaved information, are you sure you want to leave this page?';
+        });
+    }
 
     // React lifecycle function is called any time props have changed or when React thinks props has changed
     componentWillReceiveProps(nextProps) {
@@ -49,6 +51,9 @@ class ManageWinePage extends React.Component {
     saveWine(event) {
         event.preventDefault();
         this.setState({saving: true});
+
+        this.setState({unsaved: false});
+
         this.props.actions.saveWine(this.state.wine)
             .then(() => this.redirect())
             .catch(error => {
@@ -98,7 +103,9 @@ class ManageWinePage extends React.Component {
 ManageWinePage.propTypes = {
     wine: PropTypes.object.isRequired,
     makers: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
+    actions: PropTypes.object.isRequired,
+    router: PropTypes.object.isRequired,
+    route: PropTypes.object.isRequired
 };
 
 //Pull in the React Router context so router is available on this.context.router.
@@ -144,4 +151,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageWinePage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ManageWinePage));
