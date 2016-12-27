@@ -4,6 +4,7 @@ import {withRouter} from 'react-router'; // to use componentDidMount()
 import {bindActionCreators} from 'redux';
 import * as makerActions from '../../actions/makerActions';
 import MakerForm from './MakerForm';
+import {browserHistory} from 'react-router';
 import toastr from 'toastr';
 
 class ManageMakerPage extends React.Component {
@@ -69,13 +70,13 @@ class ManageMakerPage extends React.Component {
 
     deleteRedirect() {
         toastr.success('Brand deleted');
-        this.context.router.push('/makers');
+        browserHistory.push('/makers');
     }
 
     redirect() {
         this.setState({saving: false});
         toastr.success('Brand saved');
-        this.context.router.push('/makers');
+        browserHistory.push('/makers');
     }
 
     render() {
