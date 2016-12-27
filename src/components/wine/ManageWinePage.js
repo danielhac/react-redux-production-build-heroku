@@ -4,6 +4,7 @@ import {withRouter} from 'react-router'; // to use componentDidMount()
 import {bindActionCreators} from 'redux';
 import * as wineActions from '../../actions/wineActions';
 import WineForm from './WineForm';
+import {browserHistory} from 'react-router';
 import toastr from 'toastr';
 
 class ManageWinePage extends React.Component {
@@ -69,13 +70,13 @@ class ManageWinePage extends React.Component {
 
     deleteRedirect() {
         toastr.success('Wine deleted');
-        this.context.router.push('/wines');
+        browserHistory.push('/wines');
     }
 
     redirect() {
         this.setState({saving: false});
         toastr.success('Wine saved');
-        this.context.router.push('/wines');
+        browserHistory.push('/wines');
     }
 
     render() {
