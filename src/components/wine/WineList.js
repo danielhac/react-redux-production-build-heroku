@@ -11,7 +11,7 @@ const WineList = ({wines, deleteWine}) => {
                 <th>Maker</th>
                 <th>Category</th>
                 <th>Price</th>
-                <th>&nbsp;</th>
+                <th>Number of Wines: {wines.length}</th>
             </tr>
             </thead>
             <tbody>
