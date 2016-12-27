@@ -15,8 +15,15 @@ const makers = [
     {
         id: 'challis-lane',
         wineName: 'Challis Lane'
+    },
+    {
+        id: 'bogal',
+        wineName: 'Bogal'
+    },
+    {
+        id: 'cristal',
+        wineName: 'Cristal'
     }
-
 ];
 
 //This would be performed on the server in a real app. Just stubbing in.

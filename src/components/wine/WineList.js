@@ -8,10 +8,10 @@ const WineList = ({wines, deleteWine}) => {
             <tr>
                 <th>Wine Name</th>
                 <th>Region</th>
-                <th>Maker</th>
+                <th>Brand</th>
                 <th>Category</th>
                 <th>Price</th>
-                <th>Number of Wines: {wines.length}</th>
+                <th># of Wines: {wines.length}</th>
             </tr>
             </thead>
             <tbody>

@@ -7,7 +7,7 @@ const MakerList = ({makers, deleteMaker }) => {
             <thead>
             <tr>
                 <th>Brand Name</th>
-                <th>Number of Brands: {makers.length}</th>
+                <th># of Brands: {makers.length}</th>
             </tr>
             </thead>
             <tbody>

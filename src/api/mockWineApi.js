@@ -43,7 +43,16 @@ const wines = [
         makerId: "fog-head",
         price: "12.95",
         category: "White"
+    },
+    {
+        id: "bogal-essential-red",
+        wineName: "Bogal Essential Red",
+        region: "California",
+        makerId: "bogal",
+        price: "8.95",
+        category: "Red"
     }
+
 ];
 
 function replaceAll(str, find, replace) {
