@@ -52,7 +52,6 @@ class MakerApi {
                     maker.id = generateId(maker);
                     makers.push(maker);
                 }
-
                 resolve(maker);
             }, delay);
         });

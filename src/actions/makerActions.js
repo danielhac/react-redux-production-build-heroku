@@ -26,15 +26,19 @@ export function loadMakers() {
         return makerApi.getAllMakers().then(makers => {
             dispatch(loadMakersSuccess(makers));
 
-            let findNumMakers = loadMakersSuccess(makers).makers;
-            let numMakers = 0;
+            // document.getElementById("numOfMakers").innerHTML = `Number Brands: ${makers.length}`;
 
-            for (let i=0; i < findNumMakers.length; i++) {
-                // console.log(findNumMakers[i]);
-                numMakers += i;
-            }
-            numMakers.toString();
-            console.log(numMakers);
+            // let findNumMakers = loadMakersSuccess(makers).makers;
+            // let numMakers = 0;
+            //
+            // // console.log(findNumMakers);
+            //
+            // for (let i=0; i < findNumMakers.length; i++) {
+            //     // console.log(findNumMakers[i]);
+            //     numMakers += i;
+            // }
+
+            // console.log(makers.length);
 
         }).catch(error => {
             throw(error);
