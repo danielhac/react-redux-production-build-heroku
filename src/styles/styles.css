@@ -21,3 +21,8 @@ nav {
 #dots {
     padding-top: 17px;
 }
+
+.btn-default {
+    margin-right: 10px;
+    padding-right: 30px;
+}
