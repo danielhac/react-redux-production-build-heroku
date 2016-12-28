@@ -79,11 +79,16 @@ class ManageMakerPage extends React.Component {
         browserHistory.push('/makers');
     }
 
+    backRedirect() {
+        browserHistory.push('/makers');
+    }
+
     render() {
         return (
             <div className="well well-lg">
                 <MakerForm
                     onChange={this.updateMakerState}
+                    onBack={this.backRedirect}
                     onSave={this.saveMaker}
                     onDelete={this.deleteMaker}
                     maker={this.state.maker}

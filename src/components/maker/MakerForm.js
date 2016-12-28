@@ -3,7 +3,7 @@ import TextInput from '../common/TextInput';
 
 // Stateless functional components
 // Destructured all props in function's argument list
-const MakerForm = ({maker, onSave, onChange, saving, errors}) => {
+const MakerForm = ({maker, onBack, onSave, onChange, saving, errors}) => {
     return (
         <form>
             <h1>Manage Brand</h1>
@@ -13,6 +13,12 @@ const MakerForm = ({maker, onSave, onChange, saving, errors}) => {
                 value={maker.wineName}
                 onChange={onChange}
                 error={errors.wineName}/>
+
+            <input
+                type="submit"
+                value={'Back'}
+                className="btn btn-default"
+                onClick={onBack}/>
 
             <input
                 type="submit"
@@ -35,6 +41,7 @@ const MakerForm = ({maker, onSave, onChange, saving, errors}) => {
 MakerForm.propTypes = {
     maker: React.PropTypes.object.isRequired,
     // allMakers: React.PropTypes.array,
+    onBack: React.PropTypes.func.isRequired,
     onSave: React.PropTypes.func.isRequired,
     // onDelete: React.PropTypes.func.isRequired,
     onChange: React.PropTypes.func.isRequired,
