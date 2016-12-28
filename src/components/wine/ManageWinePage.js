@@ -79,11 +79,16 @@ class ManageWinePage extends React.Component {
         browserHistory.push('/wines');
     }
 
+    backRedirect() {
+        browserHistory.push('/wines');
+    }
+
     render() {
         return (
             <div className="well well-lg">
                 <WineForm
                     allMakers={this.props.makers}
+                    onBack={this.backRedirect}
                     onChange={this.updateWineState}
                     onSave={this.saveWine}
                     onDelete={this.deleteWine}
